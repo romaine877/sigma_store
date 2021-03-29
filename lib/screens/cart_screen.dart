@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sigma_store/providers/cart_items.dart';
 
 import '../constants.dart';
+import 'item_screen.dart';
 
 class CartScreen extends StatelessWidget {
   @override
@@ -23,7 +24,9 @@ class CartScreen extends StatelessWidget {
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerFloat,
               floatingActionButton: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  value.removeAll();
+                },
                 child: Text('Cash Out'),
                 style: ButtonStyle(
                   backgroundColor:
@@ -47,13 +50,16 @@ class CartScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
-                      width: 100,
-                      
+                        width: 100,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(40),
                           color: sagicorGreen,
                         ),
-                        child: Center(child: Text('\$${value.totalPrice.toString()}', style: TextStyle(fontWeight: FontWeight.bold),))),
+                        child: Center(
+                            child: Text(
+                          '\$${value.totalPrice.toString()}',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ))),
                   )
                 ],
               ),
@@ -64,12 +70,22 @@ class CartScreen extends StatelessWidget {
                     value.removeFromCart(value.items[index]);
                   },
                   key: Key(value.items[index].id),
-                  child: Card(
-                    margin: EdgeInsets.all(8),
-                    child: ListTile(
-                      leading: Image.asset(value.items[index].image),
-                      title: Text(value.items[index].name),
-                      trailing: Text('\$${value.items[index].price}'),
+                  child: GestureDetector(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ItemScreen(item: value.items[index]))),
+                    child: Card(
+                      margin: EdgeInsets.all(8),
+                      child: ListTile(
+                        leading: Hero(
+                            tag: value.items[index].id,
+                            child: Image.asset(value.items[index].image)),
+                        title: Text(value.items[index].name),
+                        subtitle: Text('Quantity: '+value.items[index].amount.toString()),
+                        trailing: Text('\$${value.items[index].price}'),
+                      ),
                     ),
                   ),
                 ),

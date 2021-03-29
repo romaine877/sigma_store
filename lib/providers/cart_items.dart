@@ -10,13 +10,28 @@ class CartItems with ChangeNotifier {
   }
 
   void addToCart(Item item) {
-    _cartItems.add(item);
-    notifyListeners();
-    print('Item added');
+    if (_cartItems.contains(item)) {
+      _cartItems.remove(item);
+      item.increaseAmount();
+      _cartItems.add(item);
+      notifyListeners();
+      print('Item added');
+      print(item.amount);
+    } else {
+      _cartItems.add(item);
+      notifyListeners();
+      print('Item added');
+      print(item.amount);
+    }
   }
 
   void removeFromCart(Item item) {
     _cartItems.remove(item);
+    notifyListeners();
+  }
+
+  void removeAll() {
+    _cartItems = [];
     notifyListeners();
   }
 

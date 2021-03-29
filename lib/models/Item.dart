@@ -1,6 +1,7 @@
 class Item {
   final String id, name, description, image;
-  final int price, amount;
+  final int price;
+  int amount;
 
   final bool isfavorite;
 
@@ -13,4 +14,8 @@ class Item {
     this.image,
     this.isfavorite = false,
   });
+
+  void increaseAmount() {
+    amount = amount + 1;
+  }
 }
