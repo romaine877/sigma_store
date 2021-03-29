@@ -7,9 +7,34 @@ Color sagicorGreen = Color(0xff84bd00);
 Color sagicorBlue = Color(0xff00a9e0);
 Color sagicorDark = Color(0xff003862);
 Color kbackground = Color(0xff9dd7ee);
+Color kgreen = Color(0xff0dd7df);
+
+Decoration background = BoxDecoration(
+  gradient: LinearGradient(
+    begin: Alignment.topRight,
+    end: Alignment.bottomLeft,
+    colors: [
+      sagicorBlue,
+      sagicorDark,
+    ],
+  ),
+);
 
 TextStyle headerText =
-    GoogleFonts.ubuntu(fontSize: 40, fontWeight: FontWeight.bold);
+    GoogleFonts.ubuntu(fontSize: 30, fontWeight: FontWeight.w400);
 
 TextStyle titleText =
-    GoogleFonts.ubuntu(fontSize: 15,);
+    GoogleFonts.ubuntu(fontSize: 15, fontWeight: FontWeight.w700);
+
+TextStyle itemHeaderText =
+    GoogleFonts.ubuntu(fontSize: 18, fontWeight: FontWeight.w700);
+
+TextStyle detailHeaderText =
+    GoogleFonts.ubuntu(fontSize: 20, fontWeight: FontWeight.w500);
+
+TextStyle detailText = GoogleFonts.ubuntu(
+  fontSize: 20,
+);
+
+TextStyle priceText =
+    GoogleFonts.ubuntu(fontSize: 20, fontWeight: FontWeight.bold);

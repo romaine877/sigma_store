@@ -1,7 +1,3 @@
-
-
-import 'package:flutter/material.dart';
-
 import 'Item.dart';
 
 List<Item> itemList = [
@@ -11,8 +7,7 @@ List<Item> itemList = [
     description:
         'Run hot when you’re cold and cold you’re not with this double duty tumbler.',
     price: 1450,
-    
-    image: 'images/bottle2.jpg',
+    image: 'images/bag_1.png',
   ),
   Item(
     id: '002',
@@ -20,8 +15,7 @@ List<Item> itemList = [
     description:
         'Run infused with your own naturally flavoured fruit or herb water.',
     price: 1550,
-   
-    image:'images/bottle3.jpg',
+    image: 'images/bag_2.png',
   ),
   Item(
     id: '003',
@@ -29,8 +23,7 @@ List<Item> itemList = [
     description:
         'Run like a champion with this sporty fitted moisture-wicking lime green top with black piping.',
     price: 2000,
-  
-    image: 'images/shirt1.jpg',
+    image: 'images/bag_3.png',
   ),
   Item(
     id: '004',
@@ -38,8 +31,7 @@ List<Item> itemList = [
     description:
         'Run with the essentials, our official 2018 Sigma Run Race-Day T.Dri-fit with, sublimated, sporty print. ',
     price: 1450,
-    
-    image: 'images/shirt2.jpg',
+    image: 'images/bag_4.png',
   ),
   Item(
     id: '005',
@@ -47,8 +39,7 @@ List<Item> itemList = [
     description:
         'Run on the beach with our one-of-a-kind Sigma Run print flip-flops.',
     price: 2450,
-   
-    image: 'images/shoes1.jpg',
+    image: 'images/bag_5.png',
   ),
   Item(
     id: '006',
@@ -56,15 +47,13 @@ List<Item> itemList = [
     description:
         'Run with this tote bag for a cause. Keep one in the car or tucked in your purse.',
     price: 500,
-   
-    image: 'images/shoes2.jpg',
+    image: 'images/bag_6.png',
   ),
   Item(
     id: '007',
     name: 'Lime Green Big Top Tumble',
     description: 'Run hydrated with our biggest tumbler ',
     price: 1600,
-    
     image: 'images/bottle1.jpg',
   ),
 ];

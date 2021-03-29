@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sigma_store/providers/cart_items.dart';
+import 'package:sigma_store/screens/cart_screen.dart';
 import './screens/home_page.dart';
-import './screens/item_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider<CartItems>(
+      create: (context) => CartItems(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.blue, accentColor: Colors.green),
-      home: ItemScreen(),
-    );
+        theme: ThemeData(primaryColor: Colors.blue, accentColor: Colors.green),
+        home: HomePage());
   }
 }
