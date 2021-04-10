@@ -1,6 +1,11 @@
-import 'package:flutter/foundation.dart';
+import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
 import '../models/Item.dart';
+
+final url = Uri.parse(
+    'https://sigma-store-1c419-default-rtdb.firebaseio.com/items.json');
 
 class CartItems with ChangeNotifier {
   List<Item> _cartItems = [];
@@ -9,29 +14,61 @@ class CartItems with ChangeNotifier {
     return [..._cartItems];
   }
 
-  void addToCart(Item item) {
+  Future<void> addToCart(Item item) async {
     if (_cartItems.contains(item)) {
       _cartItems.remove(item);
-      item.increaseAmount();
-      _cartItems.add(item);
-      notifyListeners();
-      print('Item added');
-      print(item.amount);
+      item.incrementAmount();
+      final updateUrl = Uri.parse(
+          'https://sigma-store-1c419-default-rtdb.firebaseio.com/items/${item.serverID}.json');
+      return http
+          .patch(updateUrl,
+              body: json.encode({
+                'amount': item.amount,
+              }))
+          .then((value) {
+        print(value.statusCode);
+        _cartItems.add(item);
+        notifyListeners();
+        print('Item added');
+        print(item.amount);
+      });
     } else {
-      _cartItems.add(item);
-      notifyListeners();
-      print('Item added');
-      print(item.amount);
+      if (item.amount > 1) {
+        item.removeAmount();
+      }
+      item.incrementAmount();
+      return http
+          .post(url,
+              body: json.encode({
+                'id': item.id,
+                'name': item.name,
+                'amount': item.amount,
+                'description': item.description,
+                'price': item.price,
+                'isFavorite': item.isfavorite
+              }))
+          .then((value) {
+        print(value.statusCode);
+        item.addServerID(json.decode(value.body)['name']);
+        _cartItems.add(item);
+        notifyListeners();
+        print('Item added');
+        print(item.amount);
+      });
     }
   }
 
   void removeFromCart(Item item) {
+    final deleteUrl = Uri.parse(
+        'https://sigma-store-1c419-default-rtdb.firebaseio.com/items/${item.serverID}.json');
+    http.delete(deleteUrl);
+    item.removeAmount();
     _cartItems.remove(item);
     notifyListeners();
   }
 
   void removeAll() {
-    _cartItems = [];
+    _cartItems.clear();
     notifyListeners();
   }
 

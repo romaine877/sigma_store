@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 import 'package:sigma_store/constants.dart';
 import 'package:sigma_store/models/Item.dart';
@@ -52,7 +54,7 @@ class ItemScreen extends StatelessWidget {
                 tag: item.id,
                 child: Image.asset(
                   item.image,
-                  height: height*.3,
+                  height: height * .3,
                 ),
               ),
             ),
@@ -102,18 +104,22 @@ class ItemScreen extends StatelessWidget {
                               BoxConstraints.expand(width: 250, height: 50),
                           child: ElevatedButton(
                             onPressed: () {
-                              Vibration.vibrate(duration: 100);
-                              value.addToCart(item);
                               showDialog(
                                   context: context,
                                   builder: (_) {
-                                    Future.delayed(Duration(milliseconds: 500),
+                                    /* Future.delayed(Duration(milliseconds: 500),
                                         () {
                                       Navigator.of(context).pop();
-                                    });
+                                    });*/
+                                    value.addToCart(item).then((value) => Navigator.of(context).pop());
                                     return CupertinoAlertDialog(
                                       title: Text('Item Added'),
+                                      content: SpinKitDoubleBounce(
+                                        color: sagicorBlue,
+                                        size: 20,
+                                      ),
                                     );
+                                    
                                   });
                             },
                             child: Text('ADD TO CART'),

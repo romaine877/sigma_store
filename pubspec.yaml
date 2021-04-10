@@ -12,8 +12,10 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   google_fonts: ^2.0.0
+  http: ^0.13.1
   provider: ^5.0.0
   vibration: ^1.7.3
+  flutter_spinkit: "^4.1.2"
 
 dev_dependencies:
   flutter_test:
