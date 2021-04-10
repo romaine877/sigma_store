@@ -12,6 +12,7 @@ class HomePage extends StatelessWidget {
       decoration: background,
       child: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: Text(
             'Sigma Store',
             style: headerText,

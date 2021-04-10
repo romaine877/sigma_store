@@ -1,8 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sigma_store/constants.dart';
 import 'package:sigma_store/models/Item.dart';
 import 'package:sigma_store/providers/cart_items.dart';
+import 'package:vibration/vibration.dart';
+
+import 'cart_screen.dart';
 
 class ItemScreen extends StatelessWidget {
   final Item item;
@@ -11,14 +15,28 @@ class ItemScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    print(height);
     return Container(
-       decoration: background,
+      decoration: background,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            'Sigma Store',
+            style: headerText,
+          ),
           backgroundColor: Colors.transparent,
-          foregroundColor: Colors.cyan,
-          elevation: 0,
+          shadowColor: Colors.transparent,
+          actions: [
+            IconButton(
+                icon: Icon(Icons.shopping_cart_outlined),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CartScreen()));
+                })
+          ],
         ),
         body: Column(
           children: [
@@ -34,12 +52,13 @@ class ItemScreen extends StatelessWidget {
                 tag: item.id,
                 child: Image.asset(
                   item.image,
-                  height: 200,
+                  height: height*.3,
                 ),
               ),
             ),
-            SizedBox(height: 10),
-            Expanded(
+            Spacer(),
+            Container(
+              height: height * .5,
               child: Consumer<CartItems>(
                 builder: (context, value, child) => Container(
                   padding: EdgeInsets.all(15),
@@ -83,7 +102,19 @@ class ItemScreen extends StatelessWidget {
                               BoxConstraints.expand(width: 250, height: 50),
                           child: ElevatedButton(
                             onPressed: () {
+                              Vibration.vibrate(duration: 100);
                               value.addToCart(item);
+                              showDialog(
+                                  context: context,
+                                  builder: (_) {
+                                    Future.delayed(Duration(milliseconds: 500),
+                                        () {
+                                      Navigator.of(context).pop();
+                                    });
+                                    return CupertinoAlertDialog(
+                                      title: Text('Item Added'),
+                                    );
+                                  });
                             },
                             child: Text('ADD TO CART'),
                             style: ButtonStyle(
@@ -92,8 +123,8 @@ class ItemScreen extends StatelessWidget {
                               shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(40)))),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(40)))),
                             ),
                           ),
                         ),

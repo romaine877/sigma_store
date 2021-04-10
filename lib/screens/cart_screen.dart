@@ -70,15 +70,15 @@ class CartScreen extends StatelessWidget {
                     value.removeFromCart(value.items[index]);
                   },
                   key: Key(value.items[index].id),
-                  child: GestureDetector(
-                    onTap: () => Navigator.push(
+                 
+                    child: Card(
+                      margin: EdgeInsets.all(8),
+                      child: ListTile(
+                        onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
                                 ItemScreen(item: value.items[index]))),
-                    child: Card(
-                      margin: EdgeInsets.all(8),
-                      child: ListTile(
                         leading: Hero(
                             tag: value.items[index].id,
                             child: Image.asset(value.items[index].image)),
@@ -89,7 +89,7 @@ class CartScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-              ))),
+              ))
     );
   }
 }

@@ -7,7 +7,7 @@ List<Item> itemList = [
     description:
         'Run hot when you’re cold and cold you’re not with this double duty tumbler.',
     price: 1450,
-    image: 'images/bag_1.png',
+    image: 'images/bottle1.jpg',
   ),
   Item(
     id: '002',
@@ -15,7 +15,7 @@ List<Item> itemList = [
     description:
         'Run infused with your own naturally flavoured fruit or herb water.',
     price: 1550,
-    image: 'images/bag_2.png',
+    image: 'images/bottle2.jpg',
   ),
   Item(
     id: '003',
@@ -23,7 +23,7 @@ List<Item> itemList = [
     description:
         'Run like a champion with this sporty fitted moisture-wicking lime green top with black piping.',
     price: 2000,
-    image: 'images/bag_3.png',
+    image: 'images/bottle3.jpg',
   ),
   Item(
     id: '004',

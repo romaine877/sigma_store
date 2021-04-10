@@ -20,6 +20,11 @@ Decoration background = BoxDecoration(
   ),
 );
 
+class Style {
+  static TextStyle h1 =
+      GoogleFonts.ubuntu(fontSize: 30, fontWeight: FontWeight.w400);
+}
+
 TextStyle headerText =
     GoogleFonts.ubuntu(fontSize: 30, fontWeight: FontWeight.w400);
 
@@ -38,3 +43,10 @@ TextStyle detailText = GoogleFonts.ubuntu(
 
 TextStyle priceText =
     GoogleFonts.ubuntu(fontSize: 20, fontWeight: FontWeight.bold);
+
+SnackBar snackbar = SnackBar(
+  content: Text('Item Added in Chart'),
+  duration: Duration(milliseconds: 500),
+);
+
+
