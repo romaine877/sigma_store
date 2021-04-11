@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 import 'package:sigma_store/constants.dart';
 import 'package:sigma_store/models/Item.dart';
 import 'package:sigma_store/providers/cart_items.dart';
-import 'package:vibration/vibration.dart';
+
 
 import 'cart_screen.dart';
 
@@ -51,8 +50,8 @@ class ItemScreen extends StatelessWidget {
             ),
             Center(
               child: Hero(
-                tag: item.id,
-                child: Image.asset(
+                tag: item.serverID,
+                child: Image.network(
                   item.image,
                   height: height * .3,
                 ),

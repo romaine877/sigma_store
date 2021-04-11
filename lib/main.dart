@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sigma_store/models/itemList.dart';
 import 'package:sigma_store/providers/cart_items.dart';
 import './screens/home_page.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider<CartItems>(
-      create: (context) => CartItems(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<CartItems>(
+          create: (context) => CartItems(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ItemList(),
+        )
+      ],
       child: MyApp(),
     ),
   );

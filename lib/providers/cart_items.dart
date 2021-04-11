@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import '../models/Item.dart';
 
 final url = Uri.parse(
-    'https://sigma-store-1c419-default-rtdb.firebaseio.com/items.json');
+    'https://sigma-store-1c419-default-rtdb.firebaseio.com/cart.json');
 
 class CartItems with ChangeNotifier {
   List<Item> _cartItems = [];
@@ -19,7 +19,7 @@ class CartItems with ChangeNotifier {
       _cartItems.remove(item);
       item.incrementAmount();
       final updateUrl = Uri.parse(
-          'https://sigma-store-1c419-default-rtdb.firebaseio.com/items/${item.serverID}.json');
+          'https://sigma-store-1c419-default-rtdb.firebaseio.com/cart/${item.serverID}.json');
       return http
           .patch(updateUrl,
               body: json.encode({
@@ -40,12 +40,12 @@ class CartItems with ChangeNotifier {
       return http
           .post(url,
               body: json.encode({
-                'id': item.id,
                 'name': item.name,
-                'amount': item.amount,
                 'description': item.description,
                 'price': item.price,
-                'isFavorite': item.isfavorite
+                'isFavorite': item.isfavorite,
+                'image': item.image,
+                'amount': item.amount,
               }))
           .then((value) {
         print(value.statusCode);
@@ -60,7 +60,7 @@ class CartItems with ChangeNotifier {
 
   void removeFromCart(Item item) {
     final deleteUrl = Uri.parse(
-        'https://sigma-store-1c419-default-rtdb.firebaseio.com/items/${item.serverID}.json');
+        'https://sigma-store-1c419-default-rtdb.firebaseio.com/cart/${item.serverID}.json');
     http.delete(deleteUrl);
     item.removeAmount();
     _cartItems.remove(item);
