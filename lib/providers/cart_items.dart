@@ -40,6 +40,7 @@ class CartItems with ChangeNotifier {
       return http
           .post(url,
               body: json.encode({
+                'serverID': item.serverID,
                 'name': item.name,
                 'description': item.description,
                 'price': item.price,
@@ -49,7 +50,7 @@ class CartItems with ChangeNotifier {
               }))
           .then((value) {
         print(value.statusCode);
-        item.addServerID(json.decode(value.body)['name']);
+        //item.addServerID(json.decode(value.body)['name']);
         _cartItems.add(item);
         notifyListeners();
         print('Item added');
@@ -68,7 +69,14 @@ class CartItems with ChangeNotifier {
   }
 
   void removeAll() {
+    _cartItems.forEach((element) {
+      element.removeAmount();
+    });
+    _cartItems.removeWhere((element) =>true);
     _cartItems.clear();
+    final deleteUrl = Uri.parse(
+        'https://sigma-store-1c419-default-rtdb.firebaseio.com/cart.json');
+    http.delete(deleteUrl);
     notifyListeners();
   }
 

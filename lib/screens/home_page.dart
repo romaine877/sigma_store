@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 import 'package:sigma_store/models/itemList.dart';
+import 'package:sigma_store/providers/cart_items.dart';
 import 'package:sigma_store/screens/cart_screen.dart';
 import 'package:sigma_store/screens/item_screen.dart';
 
@@ -18,6 +21,8 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  String title = 'Sigma Store';
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            'Sigma Store',
+            title,
             style: headerText,
           ),
           backgroundColor: Colors.transparent,
@@ -74,8 +79,34 @@ class _HomePageState extends State<HomePage> {
                               '\$${value.itemList[index].price}',
                               style: titleText,
                             ),
-                            IconButton(
-                                icon: Icon(Icons.favorite), onPressed: () {})
+                            Consumer<CartItems>(
+                              builder: (context, cartItems, child) =>
+                                  IconButton(
+                                icon: Icon(Icons.shopping_cart),
+                                onPressed: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) {
+                                        /* Future.delayed(Duration(milliseconds: 500),
+                                          () {
+                                        Navigator.of(context).pop();
+                                      });*/
+                                        cartItems
+                                            .addToCart(value.itemList[index])
+                                            .then((value) =>
+                                                Navigator.of(context).pop());
+                                        return CupertinoAlertDialog(
+                                          title: Text('Item Added'),
+                                          content: SpinKitDualRing(
+                                            color: sagicorBlue,
+                                            size: 20,
+                                          ),
+                                        );
+                                      });
+                                  
+                                },
+                              ),
+                            )
                           ],
                         ),
                         child: Center(
@@ -90,6 +121,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         footer: Text(
                           value.itemList[index].name,
+                          textAlign: TextAlign.center,
                           style: titleText,
                         ),
                       ),

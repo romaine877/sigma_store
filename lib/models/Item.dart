@@ -1,8 +1,7 @@
 class Item {
-  final String id, name, description, image;
+  final String id, name, description, image, serverID;
   final int price;
   int amount;
-  String serverID;
 
   final bool isfavorite;
 
@@ -25,7 +24,5 @@ class Item {
     amount = 0;
   }
 
-  void addServerID(String id) {
-    serverID = id;
-  }
+  
 }

@@ -95,6 +95,7 @@ class ItemList extends ChangeNotifier {
           description: value['description'],
           image: value['image'],
           isfavorite: value['isFavorite']));
+      print(key);
     });
     itemList = loadedItems;
     notifyListeners();
