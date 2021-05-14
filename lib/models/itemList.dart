@@ -15,7 +15,7 @@ class ItemList extends ChangeNotifier {
           'Run hot when you’re cold and cold you’re not with this double duty tumbler.',
       price: 1450,
       image:
-          'https://firebasestorage.googleapis.com/v0/b/sigma-store-1c419.appspot.com/o/bag_1.png?alt=media&token=bbc475ba-fa16-47e2-b64c-78189d84e532',
+          bag1,
     ),
     Item(
       id: '002',
@@ -24,7 +24,7 @@ class ItemList extends ChangeNotifier {
           'Run infused with your own naturally flavoured fruit or herb water.',
       price: 1550,
       image:
-          'https://firebasestorage.googleapis.com/v0/b/sigma-store-1c419.appspot.com/o/bag_2.png?alt=media&token=65aa655d-a7d2-425a-898d-abe3bc46e816',
+          bag2,
     ),
     Item(
       id: '003',
@@ -33,7 +33,7 @@ class ItemList extends ChangeNotifier {
           'Run like a champion with this sporty fitted moisture-wicking lime green top with black piping.',
       price: 2000,
       image:
-          'https://firebasestorage.googleapis.com/v0/b/sigma-store-1c419.appspot.com/o/bag_3.png?alt=media&token=66cd0676-067e-4999-816f-7adfaab2fbd1',
+          bag3,
     ),
     Item(
       id: '004',
@@ -42,7 +42,7 @@ class ItemList extends ChangeNotifier {
           'Run with the essentials, our official 2018 Sigma Run Race-Day T.Dri-fit with, sublimated, sporty print. ',
       price: 1450,
       image:
-          'https://firebasestorage.googleapis.com/v0/b/sigma-store-1c419.appspot.com/o/bag_4.png?alt=media&token=417276d9-28b9-496c-adf2-425ab4bc28a9',
+          bag4,
     ),
     Item(
       id: '005',
@@ -51,7 +51,7 @@ class ItemList extends ChangeNotifier {
           'Run on the beach with our one-of-a-kind Sigma Run print flip-flops.',
       price: 2450,
       image:
-          'https://firebasestorage.googleapis.com/v0/b/sigma-store-1c419.appspot.com/o/bag_5.png?alt=media&token=535a1311-34dc-4c82-8a06-85ec1a8794f4',
+          bag5,
     ),
     Item(
       id: '006',
@@ -60,7 +60,7 @@ class ItemList extends ChangeNotifier {
           'Run with this tote bag for a cause. Keep one in the car or tucked in your purse.',
       price: 500,
       image:
-          'https://firebasestorage.googleapis.com/v0/b/sigma-store-1c419.appspot.com/o/bag_6.png?alt=media&token=997d441d-7297-4215-87ad-0ec7a72ac80e',
+          bag6,
     ),
     Item(
       id: '007',
@@ -68,7 +68,7 @@ class ItemList extends ChangeNotifier {
       description: 'Run hydrated with our biggest tumbler ',
       price: 1600,
       image:
-          'https://firebasestorage.googleapis.com/v0/b/sigma-store-1c419.appspot.com/o/bottle1.jpg?alt=media&token=b9799589-39a2-4bfa-b857-95e1aae264e3',
+          bag7,
     ),
     Item(
       id: '008',
@@ -76,7 +76,7 @@ class ItemList extends ChangeNotifier {
       description: 'Run hydrated with our smallest tumbler ',
       price: 1600,
       image:
-          'https://firebasestorage.googleapis.com/v0/b/sigma-store-1c419.appspot.com/o/shirt1.jpg?alt=media&token=052fb574-c9ce-40b3-99a3-01de14f691a8',
+          bag8,
     ),
   ];
 

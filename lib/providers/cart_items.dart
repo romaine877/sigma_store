@@ -2,10 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import '../keys.dart';
 import '../models/Item.dart';
 
 final url = Uri.parse(
-    'https://sigma-store-1c419-default-rtdb.firebaseio.com/cart.json');
+    '$cartKey.json');
 
 class CartItems with ChangeNotifier {
   List<Item> _cartItems = [];
@@ -19,7 +20,7 @@ class CartItems with ChangeNotifier {
       _cartItems.remove(item);
       item.incrementAmount();
       final updateUrl = Uri.parse(
-          'https://sigma-store-1c419-default-rtdb.firebaseio.com/cart/${item.serverID}.json');
+          '$cartKey/${item.serverID}.json');
       return http
           .patch(updateUrl,
               body: json.encode({
@@ -61,7 +62,7 @@ class CartItems with ChangeNotifier {
 
   void removeFromCart(Item item) {
     final deleteUrl = Uri.parse(
-        'https://sigma-store-1c419-default-rtdb.firebaseio.com/cart/${item.serverID}.json');
+        '$cartKey/${item.serverID}.json');
     http.delete(deleteUrl);
     item.removeAmount();
     _cartItems.remove(item);
@@ -75,7 +76,7 @@ class CartItems with ChangeNotifier {
     _cartItems.removeWhere((element) =>true);
     _cartItems.clear();
     final deleteUrl = Uri.parse(
-        'https://sigma-store-1c419-default-rtdb.firebaseio.com/cart.json');
+        '$cartKey.json');
     http.delete(deleteUrl);
     notifyListeners();
   }
