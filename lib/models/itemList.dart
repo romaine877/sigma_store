@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import 'package:sigma_store/keys.dart';
 
 import 'Item.dart';
 
@@ -83,7 +84,7 @@ class ItemList extends ChangeNotifier {
 
   Future<void> fetchItems() async {
     final url = Uri.parse(
-        'https://sigma-store-1c419-default-rtdb.firebaseio.com/items.json');
+        apiKey);
     http.Response response = await http.get(url);
     final List<Item> loadedItems = [];
     final data = jsonDecode(response.body) as Map<String, dynamic>;
